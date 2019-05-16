@@ -28,8 +28,7 @@ extension ConnectionManager{
             }else{
                 self.connectionDelegate?.serverError(error: "Wrong Username or Password")
             }
-        }
-        )
+        }, cookie: { return nil })
     }
     
     func getUserData(){
@@ -38,18 +37,37 @@ extension ConnectionManager{
             if self.udacian?.udacity.user?.firstName != nil {
                 self.connectionDelegate?.loginSucceeded()
             }
-        })
+        }, cookie: { return nil })
+    }
+    
+    func logout(){
+        
+        fireRequest(url: sessionURL, method: "DELETE", headers: nil, body: nil, responseHandler: {_,_,_ in
+            OnTheMapAPI.updateUserPath(id: "")
+            self.connectionDelegate?.logoutSucceeded()
+        },
+            cookie: {
+            
+            var xsrfCookie: HTTPCookie? = nil
+            let sharedCookieStorage = HTTPCookieStorage.shared
+            for cookie in sharedCookieStorage.cookies! {
+                if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+            }
+            
+            return xsrfCookie
+            
+        }
+        )
+        
     }
     
     
     func encode<T:Codable>(object:T) -> Data{
-        // encoding a JSON body from a string, can also use a Codable struct
         
         let encoder = JSONEncoder()
         do {
             let json = try encoder.encode(object)
             return json
-            
         } catch {
             self.connectionDelegate?.serverError(error: "something went wrong while encoding!")
             return "{\"error\": \"something went wrong while encoding\"}".data(using: .utf8)!
@@ -70,6 +88,8 @@ extension ConnectionManager{
     }
     
 }
+
+
 
 
 

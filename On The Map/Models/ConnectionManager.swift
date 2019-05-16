@@ -34,7 +34,7 @@ class ConnectionManager {
         self.userURL.host = OnTheMapAPI.host
     }
     
-    func fireRequest(url:URLComponents, method:String?, headers:[String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->()){
+    func fireRequest(url:URLComponents, method:String?, headers:[String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
         
         print(url.url!)
         var request = URLRequest(url: url.url!)
@@ -43,7 +43,13 @@ class ConnectionManager {
         
         headers?.forEach{request.addValue("application/json", forHTTPHeaderField: $0)}
         
-        request.httpBody = body
+        request.httpBody = body 
+        
+        let coockieToDelete = cookie()
+        
+        if let xsrfCookie = coockieToDelete {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
         
         let session = URLSession.shared
         
