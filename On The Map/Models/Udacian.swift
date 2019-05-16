@@ -12,6 +12,7 @@ struct Session:Codable {
     var id:String
     var expiration:String
 }
+
 struct Account:Codable {
     var registered:Bool
     var id:String
@@ -27,21 +28,28 @@ struct Credentials: Codable {
     var account:Account?
 }
 
-struct Udacity : Codable{
+struct User : Codable{
     
     var firstName:String?
     var lastName:String?
+    
+    enum CodingKeys: String, CodingKey{
+        case firstName = "first_name"
+        case lastName = "last_name"
+    }
+    
+}
+struct Udacity : Codable{
     var email:String
     var password:String
     var credentials: Credentials?
+    var user:User?
     
     enum CodingKeys: String, CodingKey{
-
-        case firstName
-        case lastName
         case email = "username"
         case password
         case credentials
+        case user
     }
     
     init(email:String, password:String) {
@@ -56,4 +64,5 @@ struct Udacity : Codable{
 struct Udacian:Codable {
     var udacity:Udacity
 }
+
 
