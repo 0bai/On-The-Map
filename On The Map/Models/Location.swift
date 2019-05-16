@@ -9,6 +9,7 @@
 import Foundation
 
 struct Location : Codable{
+    
     var id:String
     var key:String
     var firstName:String

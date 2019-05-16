@@ -10,7 +10,13 @@ import Foundation
 
 struct OnTheMapAPI {
     static let scheme = "https"
-    static let host = "https://onthemap-api.udacity.com/v1"
-    static let usersPath = "/users"
-    static let sessionPath = "/session"
+    static let host = "onthemap-api.udacity.com"
+    static let version = "/v1"
+    static let sessionPath = "\(version)/session"
+    static var userPath = "\(version)/users"
+    
+    static func updateUserPath(id: String){
+        userPath = "\(userPath)/\(id)"
+    }
+    
 }
