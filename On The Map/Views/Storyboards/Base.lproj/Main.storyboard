@@ -42,7 +42,7 @@
                                                 <rect key="frame" x="0.0" y="41" width="314" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-ec-Xyi">
                                                 <rect key="frame" x="0.0" y="82" width="314" height="30"/>
@@ -51,6 +51,9 @@
                                                 <state key="normal" title="LOG IN">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="85p-v3-1LR"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -91,7 +94,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="Mua-7J-rpO" id="ptm-Dn-RSi"/>
-                        <outlet property="loginButton" destination="hSY-ec-Xyi" id="bgp-qU-TdC"/>
                         <outlet property="passwordTextField" destination="pgJ-Kp-dPd" id="Oyh-9n-IQt"/>
                         <outlet property="signupLabel" destination="nhr-J2-0Ml" id="g1K-0j-NSv"/>
                         <segue destination="WS9-9B-vMa" kind="show" identifier="login" id="mNp-Bo-FUC"/>
@@ -110,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addressCell" rowHeight="77" id="Nbh-f4-EUS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addressCell" rowHeight="77" id="Nbh-f4-EUS" customClass="TableViewCell" customModule="On_The_Map" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nbh-f4-EUS" id="ywa-7u-4Hd">
@@ -153,6 +155,10 @@
                                         <constraint firstAttribute="trailing" secondItem="Lww-E4-DfW" secondAttribute="trailing" id="zsp-uW-TbA"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="oip-fq-Xlh" id="6vb-Tj-9bV"/>
+                                    <outlet property="websiteLabel" destination="DYk-YJ-gpU" id="vTM-xS-ODF"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -171,6 +177,10 @@
                             <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="nWX-jo-FNT" id="fj2-yk-nOC"/>
+                        <outlet property="refreshButton" destination="3f7-0U-ylD" id="P2g-z0-SHi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-51-DUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,6 +218,10 @@
                             <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="H76-1U-G2Q" id="Cek-wr-0r4"/>
+                        <outlet property="refreshButton" destination="NkT-OR-k9j" id="8En-U3-Cu9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8b-fD-vb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -277,6 +291,9 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addressTextField" destination="Vue-dL-G6d" id="Z4I-fI-Me0"/>
+                        <outlet property="findButton" destination="F32-TU-ZC0" id="atF-cN-5Fn"/>
+                        <outlet property="websiteTextField" destination="0M8-IU-tGe" id="4wc-kw-bR8"/>
                         <segue destination="zTN-Ns-dpd" kind="show" identifier="showLocation" id="w1A-49-RN6"/>
                     </connections>
                 </viewController>
@@ -318,6 +335,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2vw-4v-WO3"/>
                     </view>
+                    <connections>
+                        <outlet property="finishButton" destination="9RW-bG-xR9" id="gpT-Tr-TfN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86W-iB-zPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
