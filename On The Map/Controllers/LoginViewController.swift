@@ -15,12 +15,14 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var signupLabel: UILabel!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    
+    @IBAction func signup(_ sender: Any) {
+        
     }
     
     @IBAction func login(_ sender: Any) {
