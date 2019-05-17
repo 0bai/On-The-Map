@@ -16,7 +16,7 @@ class OnTheMapAPI{
     static let sessionPath = "\(version)/session"
     static let usersPath = "\(version)/users"
     static var userPath = ""
-    static var studentsLocation = [StudentInformation]()
+    static var studentsLocation: LocationsList? = nil
     
     static func updateUserPath(id: String){
         userPath = "\(usersPath)/\(id)"
@@ -24,7 +24,6 @@ class OnTheMapAPI{
     
     static func clearData(){
         updateUserPath(id: "")
-        studentsLocation = [StudentInformation]()
-        
+        studentsLocation = nil
     }
 }

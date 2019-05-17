@@ -12,5 +12,5 @@ struct ParseAPI{
     static let scheme = "https"
     static let host = "parse.udacity.com"
     static let path = "/parse/classes/StudentLocation"
-    static let queries = ["limit":"100", "order": "updatedAt"]
+    static let queries = ["limit":"100", "order": "-updatedAt"]
 }

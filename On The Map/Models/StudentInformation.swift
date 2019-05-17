@@ -29,8 +29,6 @@ struct StudentInformation : Codable{
         case latitude
         case longitude
     }
-    
-    
 }
 
 struct LocationsList : Codable {
