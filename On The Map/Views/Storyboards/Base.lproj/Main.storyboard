@@ -30,7 +30,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="PNu-rw-f2R" userLabel="Login">
-                                        <rect key="frame" x="0.0" y="171.5" width="314" height="112"/>
+                                        <rect key="frame" x="0.0" y="128.5" width="314" height="112"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mua-7J-rpO">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="30"/>
@@ -57,6 +57,9 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-xs-QQw">
+                                        <rect key="frame" x="0.0" y="307" width="314" height="20"/>
+                                    </activityIndicatorView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-1z-Dts">
                                         <rect key="frame" x="0.0" y="393" width="314" height="30"/>
                                         <subviews>
@@ -94,7 +97,9 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="ORe-xs-QQw" id="6sz-Nf-wN2"/>
                         <outlet property="emailTextField" destination="Mua-7J-rpO" id="ptm-Dn-RSi"/>
+                        <outlet property="loginButton" destination="hSY-ec-Xyi" id="1zH-fX-n2v"/>
                         <outlet property="passwordTextField" destination="pgJ-Kp-dPd" id="Oyh-9n-IQt"/>
                         <segue destination="WS9-9B-vMa" kind="show" identifier="login" id="mNp-Bo-FUC"/>
                     </connections>
