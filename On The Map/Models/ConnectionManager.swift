@@ -51,18 +51,18 @@ class ConnectionManager {
     
     
     
-    static func fireRequest(url:URLComponents, method:String?, headers:[String:[String]]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
+    static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
         
-        print(url.url!)
+        print("\n \(url.url!) \n")
+        
         var request = URLRequest(url: url.url!)
         
         request.httpMethod = method ?? "GET"
         
-        headers?.forEach{(arg) in
-            
-            let (key, value) = arg
-            value.forEach{request.addValue(key, forHTTPHeaderField: $0)}
-           }
+        headers?.forEach{(key, value) in
+            request.addValue(value, forHTTPHeaderField: key)
+            }
+        
         
         request.httpBody = body 
         
@@ -80,7 +80,7 @@ class ConnectionManager {
                 return
             }
             let newData = data?.subdata(in: 5..<data!.count) /* subset response data! */
-            print(String(data: newData!, encoding: .utf8)!)
+            print("\n \(String(data: newData!, encoding: .utf8)!) \n")
             responseHandler(newData!, response, error)
         }
         task.resume()
