@@ -48,14 +48,18 @@ class ConnectionManager {
     
     
     
-    static func fireRequest(url:URLComponents, method:String?, headers:[String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
+    static func fireRequest(url:URLComponents, method:String?, headers:[String:[String]]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
         
         print(url.url!)
         var request = URLRequest(url: url.url!)
         
         request.httpMethod = method ?? "GET"
         
-        headers?.forEach{request.addValue("application/json", forHTTPHeaderField: $0)}
+        headers?.forEach{(arg) in
+            
+            let (key, value) = arg
+            value.forEach{request.addValue(key, forHTTPHeaderField: $0)}
+           }
         
         request.httpBody = body 
         

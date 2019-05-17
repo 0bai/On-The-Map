@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    var address:Location! {
+    var address:StudentInformation! {
         didSet{
             updateUI()
         }

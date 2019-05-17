@@ -15,6 +15,7 @@ struct OnTheMapAPI {
     static let sessionPath = "\(version)/session"
     static let usersPath = "\(version)/users"
     static var userPath = ""
+    static var studentsLocation = [StudentInformation]()
     
     static func updateUserPath(id: String){
         userPath = "\(usersPath)/\(id)"

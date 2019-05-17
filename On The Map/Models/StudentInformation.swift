@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Location : Codable{
+struct StudentInformation : Codable{
     
     var id:String
     var key:String

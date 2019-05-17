@@ -13,7 +13,7 @@ extension ConnectionManager{
     //TODO: FIND A WAY TO SPECIALIZE ERROR MESSAGES
     static func login(){
         
-        fireRequest(url: sessionURL, method: "POST", headers: ["Accept", "Content-Type"], body: encode(object: udacian), responseHandler: {data,response,error in
+        fireRequest(url: sessionURL, method: "POST", headers: ["application/json":["Accept","Content-Type"]], body: encode(object: udacian), responseHandler: {data,response,error in
             
             self.udacian?.udacity.credentials = self.decode(data: data, type: Credentials.self) as? Credentials
             
