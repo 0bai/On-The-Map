@@ -23,6 +23,7 @@
 		2A9AB0DA228A8FCD00F44D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D9228A8FCD00F44D72 /* Assets.xcassets */; };
 		2A9AB0DD228A8FCD00F44D72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0DB228A8FCD00F44D72 /* LaunchScreen.storyboard */; };
 		2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BA228E81330025A165 /* ParseAPI.swift */; };
+		2AAC15BD228E85C50025A165 /* MapLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */; };
 		2AC375CC228D01D100AB21C5 /* OnTheMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		2A9AB0DC228A8FCD00F44D72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9AB0DE228A8FCD00F44D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AAC15BA228E81330025A165 /* ParseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
+		2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationsManager.swift; sourceTree = "<group>"; };
 		2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				2A274247228BBBC4002C1489 /* AuthenticationManager.swift */,
 				2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */,
 				2AAC15BA228E81330025A165 /* ParseAPI.swift */,
+				2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				2AC375CC228D01D100AB21C5 /* OnTheMapAPI.swift in Sources */,
 				2A274248228BBBC4002C1489 /* AuthenticationManager.swift in Sources */,
 				2A274244228BB799002C1489 /* ConnectionManager.swift in Sources */,
+				2AAC15BD228E85C50025A165 /* MapLocationsManager.swift in Sources */,
 				2A9AB0D0228A8FC900F44D72 /* AppDelegate.swift in Sources */,
 				2A274238228BAB0E002C1489 /* TableViewController.swift in Sources */,
 				2A27423C228BAB48002C1489 /* LocationPreviewViewController.swift in Sources */,

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct OnTheMapAPI {
+class OnTheMapAPI{
+    
     static let scheme = "https"
     static let host = "onthemap-api.udacity.com"
     static let version = "/v1"
@@ -21,4 +22,9 @@ struct OnTheMapAPI {
         userPath = "\(usersPath)/\(id)"
     }
     
+    static func clearData(){
+        updateUserPath(id: "")
+        studentsLocation = [StudentInformation]()
+        
+    }
 }

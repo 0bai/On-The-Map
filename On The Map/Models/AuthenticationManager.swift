@@ -35,17 +35,17 @@ extension ConnectionManager{
         self.fireRequest(url: self.userURL, method: nil, headers: nil, body: nil, responseHandler: {data, response, error in
             self.udacian?.udacity.user = (self.decode(data: data, type: User.self) as? User)!
             if self.udacian?.udacity.user?.firstName != nil {
-                self.connectionDelegate?.loginSucceeded()
+                self.connectionDelegate?.loginSucceeded!()
             }
         }, cookie: { return nil })
     }
-    
+
     static func logout(){
         
         fireRequest(url: sessionURL, method: "DELETE", headers: nil, body: nil, responseHandler: {_,_,_ in
-            OnTheMapAPI.updateUserPath(id: "")
+            OnTheMapAPI.clearData()
             self.udacian = nil
-            self.connectionDelegate?.logoutSucceeded()
+            self.connectionDelegate?.logoutSucceeded!()
             self.connectionDelegate = nil
         },
             cookie: {

@@ -8,9 +8,12 @@
 
 import Foundation
 @objc protocol ConnectionDelegate{
-    @objc func loginSucceeded()
-    @objc func logoutSucceeded()
+    @objc optional func loginSucceeded()
+    @objc optional func logoutSucceeded()
+    @objc optional func listRetrieved()
     @objc func serverError(error:String)
+    
+    
 }
 
 class ConnectionManager {
