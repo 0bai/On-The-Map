@@ -51,7 +51,7 @@ class ConnectionManager {
     
     
     
-    static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
+    static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?,body:Data?, skip: Bool, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
         
         print("\n \(url.url!) \n")
         
@@ -79,11 +79,38 @@ class ConnectionManager {
                 self.connectionDelegate?.serverError(error: "something went wrong!")
                 return
             }
-            let newData = data?.subdata(in: 5..<data!.count) /* subset response data! */
+            
+            let newData = skip ? data?.subdata(in: 5..<data!.count) : data
             print("\n \(String(data: newData!, encoding: .utf8)!) \n")
             responseHandler(newData!, response, error)
         }
         task.resume()
+    }
+    
+    
+    static func encode<T:Codable>(object:T) -> Data{
+        
+        let encoder = JSONEncoder()
+        do {
+            let json = try encoder.encode(object)
+            return json
+        } catch {
+            self.connectionDelegate?.serverError(error: "something went wrong while encoding!")
+            return "{\"error\": \"something went wrong while encoding\"}".data(using: .utf8)!
+        }
+    }
+    
+    
+    static func decode<T: Codable>(data:Data, type:T.Type) -> Codable{
+        do {
+            let decoder = JSONDecoder()
+            let genericObject =  try decoder.decode(type.self, from: data)
+            return genericObject
+        } catch  {
+            print("error while decoding \(type)")
+            return Account(registered: false, id: "0")
+        }
+        
     }
 }
 
