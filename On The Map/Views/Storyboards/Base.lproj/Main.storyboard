@@ -172,20 +172,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="kMY-18-YKC">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="nWX-jo-FNT"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="nWX-jo-FNT">
+                            <connections>
+                                <action selector="logout:" destination="7ca-Oc-a6B" id="q2z-sZ-b7k"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="fEs-yV-uJ9">
                                 <connections>
                                     <segue destination="nAK-qd-qce" kind="show" id="mlr-At-BJe"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD"/>
+                            <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD">
+                                <connections>
+                                    <action selector="refresh:" destination="7ca-Oc-a6B" id="iMQ-xu-40p"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="logoutButton" destination="nWX-jo-FNT" id="fj2-yk-nOC"/>
-                        <outlet property="refreshButton" destination="3f7-0U-ylD" id="P2g-z0-SHi"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-51-DUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -452,6 +456,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wod-17-bfT"/>
+        <segue reference="mlr-At-BJe"/>
     </inferredMetricsTieBreakers>
 </document>
