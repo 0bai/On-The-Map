@@ -17,3 +17,4 @@ class Alert{
         sender.present(alert, animated: true, completion: nil)
     }
 }
+

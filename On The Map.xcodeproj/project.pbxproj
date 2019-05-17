@@ -24,7 +24,7 @@
 		2A9AB0DD228A8FCD00F44D72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0DB228A8FCD00F44D72 /* LaunchScreen.storyboard */; };
 		2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BA228E81330025A165 /* ParseAPI.swift */; };
 		2AAC15BD228E85C50025A165 /* MapLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */; };
-		2AAC15BF228E8F0F0025A165 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BE228E8F0F0025A165 /* Alert.swift */; };
+		2AAC15BF228E8F0F0025A165 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BE228E8F0F0025A165 /* Alerts.swift */; };
 		2AC375CC228D01D100AB21C5 /* OnTheMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		2A9AB0DE228A8FCD00F44D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AAC15BA228E81330025A165 /* ParseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationsManager.swift; sourceTree = "<group>"; };
-		2AAC15BE228E8F0F0025A165 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		2AAC15BE228E8F0F0025A165 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 			children = (
 				2A9AB0E4228A919C00F44D72 /* Storyboards */,
 				2A27423E228BAD5A002C1489 /* TableViewCell.swift */,
-				2AAC15BE228E8F0F0025A165 /* Alert.swift */,
+				2AAC15BE228E8F0F0025A165 /* Alerts.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 				2A274238228BAB0E002C1489 /* TableViewController.swift in Sources */,
 				2A27423C228BAB48002C1489 /* LocationPreviewViewController.swift in Sources */,
 				2A274246228BB8AE002C1489 /* Udacian.swift in Sources */,
-				2AAC15BF228E8F0F0025A165 /* Alert.swift in Sources */,
+				2AAC15BF228E8F0F0025A165 /* Alerts.swift in Sources */,
 				2A274236228BAAF5002C1489 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
