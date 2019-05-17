@@ -22,6 +22,7 @@
 		2A9AB0D8228A8FC900F44D72 /* On_The_Map.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D6228A8FC900F44D72 /* On_The_Map.xcdatamodeld */; };
 		2A9AB0DA228A8FCD00F44D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D9228A8FCD00F44D72 /* Assets.xcassets */; };
 		2A9AB0DD228A8FCD00F44D72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0DB228A8FCD00F44D72 /* LaunchScreen.storyboard */; };
+		2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BA228E81330025A165 /* ParseAPI.swift */; };
 		2AC375CC228D01D100AB21C5 /* OnTheMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		2A9AB0D9228A8FCD00F44D72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9AB0DC228A8FCD00F44D72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9AB0DE228A8FCD00F44D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AAC15BA228E81330025A165 /* ParseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				2A274243228BB799002C1489 /* ConnectionManager.swift */,
 				2A274247228BBBC4002C1489 /* AuthenticationManager.swift */,
 				2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */,
+				2AAC15BA228E81330025A165 /* ParseAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				2A274234228BAAB3002C1489 /* LoginViewController.swift in Sources */,
 				2A27423F228BAD5A002C1489 /* TableViewCell.swift in Sources */,
+				2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */,
 				2A27423A228BAB2D002C1489 /* AddLocationViewController.swift in Sources */,
 				2A9AB0D8228A8FC900F44D72 /* On_The_Map.xcdatamodeld in Sources */,
 				2A274241228BAD69002C1489 /* StudentInformation.swift in Sources */,
