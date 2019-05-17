@@ -32,3 +32,7 @@ struct StudentInformation : Codable{
     
     
 }
+
+struct LocationsList : Codable {
+    var results:[StudentInformation]
+}
