@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController, ConnectionDelegate{
     
-    var signupURL = "https://www.google.com/url?q=https://www.udacity.com/account/auth%23!/signup&sa=D&ust=1557816850414000"
+    var signupURL = URL(string: "https://auth.udacity.com/sign-up")
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     
     
     @IBAction func signup(_ sender: Any) {
-       
+        UIApplication.shared.open(signupURL!)
     }
     
     @IBAction func login(_ sender: Any) {
