@@ -14,17 +14,22 @@ import Foundation
 }
 
 class ConnectionManager {
-    var udacian:Udacian?
-    var connectionDelegate:ConnectionDelegate?
-    var sessionURL = URLComponents()
-    var userURL = URLComponents()
+    
+    static var udacian:Udacian? = nil
+    static var connectionDelegate:ConnectionDelegate? = nil
+    static var sessionURL = URLComponents()
+    static var userURL = URLComponents()
     
     
-    init(delegate:ConnectionDelegate, email:String, password:String) {
+    private init() {
+        
+
+    }
+    
+    static func initilizeConnection(delegate:ConnectionDelegate, email:String, password:String){
         
         udacian = Udacian(udacity: Udacity(email: email, password: password))
         
-        self.connectionDelegate = delegate
         
         self.sessionURL.scheme = OnTheMapAPI.scheme
         self.sessionURL.host = OnTheMapAPI.host
@@ -32,9 +37,18 @@ class ConnectionManager {
         
         self.userURL.scheme = OnTheMapAPI.scheme
         self.userURL.host = OnTheMapAPI.host
+        
+        self.updateDelegate(delegate: delegate)
+        
     }
     
-    func fireRequest(url:URLComponents, method:String?, headers:[String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
+    static func updateDelegate(delegate:ConnectionDelegate){
+        self.connectionDelegate = delegate
+    }
+    
+    
+    
+    static func fireRequest(url:URLComponents, method:String?, headers:[String]?,body:Data?, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
         
         print(url.url!)
         var request = URLRequest(url: url.url!)

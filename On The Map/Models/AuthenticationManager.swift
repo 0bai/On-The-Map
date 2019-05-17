@@ -11,7 +11,7 @@ import Foundation
 
 extension ConnectionManager{
     //TODO: FIND A WAY TO SPECIALIZE ERROR MESSAGES
-    func login(){
+    static func login(){
         
         fireRequest(url: sessionURL, method: "POST", headers: ["Accept", "Content-Type"], body: encode(object: udacian), responseHandler: {data,response,error in
             
@@ -31,7 +31,7 @@ extension ConnectionManager{
         }, cookie: { return nil })
     }
     
-    func getUserData(){
+    static func getUserData(){
         self.fireRequest(url: self.userURL, method: nil, headers: nil, body: nil, responseHandler: {data, response, error in
             self.udacian?.udacity.user = (self.decode(data: data, type: User.self) as? User)!
             if self.udacian?.udacity.user?.firstName != nil {
@@ -40,11 +40,13 @@ extension ConnectionManager{
         }, cookie: { return nil })
     }
     
-    func logout(){
+    static func logout(){
         
         fireRequest(url: sessionURL, method: "DELETE", headers: nil, body: nil, responseHandler: {_,_,_ in
             OnTheMapAPI.updateUserPath(id: "")
+            self.udacian = nil
             self.connectionDelegate?.logoutSucceeded()
+            self.connectionDelegate = nil
         },
             cookie: {
             
@@ -62,7 +64,7 @@ extension ConnectionManager{
     }
     
     
-    func encode<T:Codable>(object:T) -> Data{
+    static func encode<T:Codable>(object:T) -> Data{
         
         let encoder = JSONEncoder()
         do {
@@ -75,7 +77,7 @@ extension ConnectionManager{
     }
     
     
-    func decode<T: Codable>(data:Data, type:T.Type) -> Codable{
+    static func decode<T: Codable>(data:Data, type:T.Type) -> Codable{
         do {
             let decoder = JSONDecoder()
             let genericObject =  try decoder.decode(type.self, from: data)

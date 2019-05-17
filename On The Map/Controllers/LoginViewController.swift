@@ -22,14 +22,14 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     
     
     @IBAction func signup(_ sender: Any) {
-        
+       
     }
     
     @IBAction func login(_ sender: Any) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        let connectionManager = ConnectionManager(delegate: self, email: email, password: password)
-        connectionManager.login()
+        ConnectionManager.initilizeConnection(delegate: self, email: email, password: password)
+        ConnectionManager.login()
     }
     
     func loginSucceeded() {
