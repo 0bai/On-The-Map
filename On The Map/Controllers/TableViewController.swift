@@ -18,15 +18,17 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if OnTheMapAPI.studentsLocation == nil {
-            retrieveData()
-        }else{
-            
-        }
+        ConnectionManager.connectionDelegate = self
         
+        if OnTheMapAPI.studentsLocation == nil {
+            refresh(self)
+        }
     }
     
     @IBAction func refresh(_ sender: Any) {
+        OnTheMapAPI.studentsLocation = nil
+        updateTable()
+        retrieveData()
     }
     @IBAction func logout(_ sender: Any) {
         ConnectionManager.logout()
@@ -40,6 +42,33 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     }
     
     func serverError(error: String) {
+        DispatchQueue.main.async {
+            Alert.show(title: "Download Failed", message: "Please Refresh The Table", sender: self)
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
+        
+        let student = OnTheMapAPI.studentsLocation?.results[indexPath.row]
+        
+        cell.address = student ?? nil
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        guard let link = cell.websiteLabel.text else{ return }
+        if ConnectionManager.isValidURL(link: link){
+            let websiteURL = URL(string: link)!
+            UIApplication.shared.open(websiteURL)
+            return
+        }
+        DispatchQueue.main.async {
+            Alert.show(title: "Error", message: "Invalid Link", sender: self)
+        }
         
     }
     
@@ -52,32 +81,20 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     }
     
     func listRetrieved() {
-        self.refresh(self)
+        self.updateTable()
     }
     
     func retrieveData(){
-        ConnectionManager.connectionDelegate = self
         ConnectionManager.getLocations()
     }
     
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-        
-        let student = OnTheMapAPI.studentsLocation?.results[indexPath.row]
-        
-        cell.nameLabel.text = "\(student!.firstName) \(student!.lastName)"
-        
-        cell.websiteLabel.text = student!.website
-
-
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-        let websiteURL = URL(string: cell.websiteLabel.text!)!
-        UIApplication.shared.open(websiteURL)
+    func updateTable(){
+        DispatchQueue.main.async {
+            
+            self.tableView.beginUpdates()
+            self.tableView.reloadData()
+            self.tableView.endUpdates()
+            
+        }
     }
 }
