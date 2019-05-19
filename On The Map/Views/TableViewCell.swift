@@ -16,9 +16,11 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
     
+    @IBOutlet weak var pin: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +34,10 @@ class TableViewCell: UITableViewCell {
     }
     
     func updateUI(){
-        nameLabel.text = "\(address.firstName) \(address.lastName)"
-        websiteLabel.text = "\(address.website)"
+        activityIndicator.stopAnimating()
+        pin.isHidden = false
+        nameLabel.text = "\((address.firstName ?? "")!) \((address.lastName ?? "")!)"
+        websiteLabel.text = "\((address.website ?? "")!)"
     }
 
 }
