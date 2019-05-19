@@ -64,4 +64,10 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        let websiteURL = URL(string: cell.websiteLabel.text!)!
+        UIApplication.shared.open(websiteURL)
+    }
 }
