@@ -10,13 +10,9 @@ import UIKit
 
 class TableViewController: UITableViewController, ConnectionDelegate {
     
-    
-    
-    
     let cellIdentifier = "addressCell"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         
         ConnectionManager.connectionDelegate = self
         
