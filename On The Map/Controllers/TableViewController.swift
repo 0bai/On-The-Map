@@ -21,7 +21,7 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         if OnTheMapAPI.studentsLocation == nil {
             retrieveData()
         }else{
-
+            
         }
         
     }
@@ -29,7 +29,9 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     @IBAction func refresh(_ sender: Any) {
     }
     @IBAction func logout(_ sender: Any) {
+        ConnectionManager.logout()
     }
+    
     
     // MARK: - Table view data source
     
@@ -39,6 +41,14 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     
     func serverError(error: String) {
         
+    }
+    
+    func logoutSucceeded() {
+        print("logout succeeded")
+        DispatchQueue.main.async {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+            self.present( vc, animated: true, completion: nil)
+        }
     }
     
     func listRetrieved() {
