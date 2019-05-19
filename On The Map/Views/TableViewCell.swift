@@ -25,19 +25,31 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
     
+    
     func updateUI(){
-        activityIndicator.stopAnimating()
-        pin.isHidden = false
-        nameLabel.text = "\((address.firstName ?? "")!) \((address.lastName ?? "")!)"
-        websiteLabel.text = "\((address.website ?? "")!)"
+        if address != nil {
+            setIcon(isLoading: false)
+        }else{
+            setIcon(isLoading: true)
+        }
+        
+            nameLabel.text = "\((address?.firstName ?? "Loading")!) \((address?.lastName ?? "")!)"
+            websiteLabel.text = "\((address?.website ?? "Loading")!)"
+        
     }
-
+    
+    func setIcon(isLoading: Bool){
+        if isLoading{
+            pin.isHidden = true
+            activityIndicator.startAnimating()
+        }else{
+            pin.isHidden = false
+            activityIndicator.stopAnimating()
+        }
+        
+    }
+    
 }
