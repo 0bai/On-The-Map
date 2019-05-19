@@ -14,7 +14,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var indicatorView: UIView!
     
-    override func viewDidLoad() {
+     var annotations = [MKPointAnnotation]()
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         
         ConnectionManager.connectionDelegate = self
@@ -26,6 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     
     @IBAction func refresh(_ sender: Any) {
         indicatorView.isHidden = false
+        mapView.removeAnnotations(annotations)
         retrieveData()
     }
     @IBAction func logout(_ sender: Any) {
@@ -44,6 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     func listRetrieved() {
         DispatchQueue.main.async {
             self.indicatorView.isHidden = true
+            self.updateMap()
         }
     }
     
@@ -58,7 +62,58 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     }
     
     func updateMap(){
-        DispatchQueue.main.async {
+        let locations = OnTheMapAPI.studentsLocation?.results
+        
+        annotations = [MKPointAnnotation]()
+        
+        locations?.forEach{ location in
+            
+            let lat = CLLocationDegrees(location.latitude!)
+            let long = CLLocationDegrees(location.longitude!)
+            
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(location.firstName ?? "") \(location.lastName ?? "")"
+            annotation.subtitle = location.website
+            annotations.append(annotation)
+        }
+        
+        self.mapView.addAnnotations(annotations)
+    }
+    
+    // MARK: - MKMapViewDelegate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            guard let link = view.annotation?.subtitle else{ return }
+            if ConnectionManager.isValidURL(link: link!){
+                let websiteURL = URL(string: link!)!
+                UIApplication.shared.open(websiteURL)
+                return
+            }
+            DispatchQueue.main.async {
+                Alert.show(title: "Error", message: "Invalid Link", sender: self)
+            }
             
         }
     }
