@@ -95,7 +95,7 @@ class ConnectionManager {
             let json = try encoder.encode(object)
             return json
         } catch {
-            self.connectionDelegate?.serverError(error: "something went wrong while encoding!")
+            self.connectionDelegate?.serverError(error: "something went wrong while wrapping the data!")
             return "{\"error\": \"something went wrong while encoding\"}".data(using: .utf8)!
         }
     }
@@ -108,10 +108,25 @@ class ConnectionManager {
             return genericObject
         } catch  {
             print("error while decoding \(type)")
+            connectionDelegate?.serverError(error: "Error while unwrapping the data!")
             return Account(registered: false, id: "0")
         }
         
     }
+    
+    static func isValidURL(link: String) -> Bool{
+        
+        guard link.contains("https://") else {
+            return false
+        }
+        
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        
+        let numberOfMatches = detector.firstMatch(in: link, options: [], range: NSRange(location: 0, length: link.utf16.count))
+        
+        return numberOfMatches?.range.length == link.utf16.count
+        
+        }
 }
 
 
