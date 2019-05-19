@@ -30,7 +30,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="PNu-rw-f2R" userLabel="Login">
-                                        <rect key="frame" x="0.0" y="128.5" width="314" height="112"/>
+                                        <rect key="frame" x="0.0" y="154" width="314" height="112"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mua-7J-rpO">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="30"/>
@@ -57,11 +57,8 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-xs-QQw">
-                                        <rect key="frame" x="0.0" y="307" width="314" height="20"/>
-                                    </activityIndicatorView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-1z-Dts">
-                                        <rect key="frame" x="0.0" y="393" width="314" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-1z-Dts">
+                                        <rect key="frame" x="0.0" y="358" width="314" height="65"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="TcJ-sn-ZJl" userLabel="SignUp">
                                                 <rect key="frame" x="40.5" y="0.0" width="233" height="30"/>
@@ -81,6 +78,9 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-xs-QQw">
+                                                <rect key="frame" x="147" y="45" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
