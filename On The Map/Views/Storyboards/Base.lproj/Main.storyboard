@@ -211,6 +211,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-pV-Qqq">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <connections>
+                                    <outlet property="delegate" destination="yRc-f1-o3x" id="Ked-ot-vZS"/>
+                                </connections>
                             </mapView>
                             <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaY-hZ-2LH">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
@@ -240,20 +243,27 @@
                         <viewLayoutGuide key="safeArea" id="UP4-eS-ote"/>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="6RH-qW-34i">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="H76-1U-G2Q"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="H76-1U-G2Q">
+                            <connections>
+                                <action selector="logout:" destination="yRc-f1-o3x" id="zTI-Jy-fVl"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="V4k-YR-jwB">
                                 <connections>
                                     <segue destination="nAK-qd-qce" kind="show" id="Wod-17-bfT"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j"/>
+                            <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j">
+                                <connections>
+                                    <action selector="refresh:" destination="yRc-f1-o3x" id="kgW-60-8gP"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="indicatorView" destination="EaY-hZ-2LH" id="qhV-LY-6YX"/>
-                        <outlet property="logoutButton" destination="H76-1U-G2Q" id="Cek-wr-0r4"/>
-                        <outlet property="refreshButton" destination="NkT-OR-k9j" id="8En-U3-Cu9"/>
+                        <outlet property="mapView" destination="Xlb-pV-Qqq" id="qhK-NU-2SF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8b-fD-vb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -462,6 +472,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mlr-At-BJe"/>
+        <segue reference="Wod-17-bfT"/>
     </inferredMetricsTieBreakers>
 </document>

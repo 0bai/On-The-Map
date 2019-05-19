@@ -41,12 +41,6 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         return OnTheMapAPI.studentsLocation?.results.count ?? 100
     }
     
-    func serverError(error: String) {
-        DispatchQueue.main.async {
-            Alert.show(title: "Download Failed", message: "Please Refresh The Table", sender: self)
-        }
-    }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
@@ -70,6 +64,12 @@ class TableViewController: UITableViewController, ConnectionDelegate {
             Alert.show(title: "Error", message: "Invalid Link", sender: self)
         }
         
+    }
+    
+    func serverError(error: String) {
+        DispatchQueue.main.async {
+            Alert.show(title: "Download Failed", message: "Please Refresh The Table", sender: self)
+        }
     }
     
     func logoutSucceeded() {
