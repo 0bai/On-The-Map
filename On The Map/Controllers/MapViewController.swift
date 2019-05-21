@@ -68,8 +68,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
         
         locations?.forEach{ location in
             
-            let lat = CLLocationDegrees(location.latitude!)
-            let long = CLLocationDegrees(location.longitude!)
+            guard let userLat = location.latitude else {return}
+            guard let userLong = location.longitude else {return}
+            let lat = CLLocationDegrees(userLat)
+            let long = CLLocationDegrees(userLong)
             
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
