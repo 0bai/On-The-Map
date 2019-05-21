@@ -23,7 +23,6 @@
 		2A9AB0D8228A8FC900F44D72 /* On_The_Map.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D6228A8FC900F44D72 /* On_The_Map.xcdatamodeld */; };
 		2A9AB0DA228A8FCD00F44D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D9228A8FCD00F44D72 /* Assets.xcassets */; };
 		2A9AB0DD228A8FCD00F44D72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0DB228A8FCD00F44D72 /* LaunchScreen.storyboard */; };
-		2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BA228E81330025A165 /* ParseAPI.swift */; };
 		2AAC15BD228E85C50025A165 /* MapLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */; };
 		2AAC15BF228E8F0F0025A165 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC15BE228E8F0F0025A165 /* Alerts.swift */; };
 		2AC375CC228D01D100AB21C5 /* OnTheMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */; };
@@ -48,7 +47,6 @@
 		2A9AB0D9228A8FCD00F44D72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9AB0DC228A8FCD00F44D72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9AB0DE228A8FCD00F44D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AAC15BA228E81330025A165 /* ParseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationsManager.swift; sourceTree = "<group>"; };
 		2AAC15BE228E8F0F0025A165 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapAPI.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				2A274247228BBBC4002C1489 /* AuthenticationManager.swift */,
 				2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */,
 				2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */,
-				2AAC15BA228E81330025A165 /* ParseAPI.swift */,
 				2A274240228BAD69002C1489 /* StudentInformation.swift */,
 				2A274245228BB8AE002C1489 /* Udacian.swift */,
 				2A8F21C82293BCFB00FDCDD3 /* InputError.swift */,
@@ -223,7 +220,6 @@
 				2A8F21C92293BCFB00FDCDD3 /* InputError.swift in Sources */,
 				2A274234228BAAB3002C1489 /* LoginViewController.swift in Sources */,
 				2A27423F228BAD5A002C1489 /* TableViewCell.swift in Sources */,
-				2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */,
 				2A27423A228BAB2D002C1489 /* AddLocationViewController.swift in Sources */,
 				2A9AB0D8228A8FC900F44D72 /* On_The_Map.xcdatamodeld in Sources */,
 				2A274241228BAD69002C1489 /* StudentInformation.swift in Sources */,

@@ -186,7 +186,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="fEs-yV-uJ9">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="presentation" id="Zf8-bx-btB"/>
+                                    <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="Zf8-bx-btB"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD">
@@ -251,7 +251,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="V4k-YR-jwB">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="presentation" id="I6J-qU-yDX"/>
+                                    <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="I6J-qU-yDX"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j">
@@ -483,7 +483,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mNp-Bo-FUC"/>
         <segue reference="Zf8-bx-btB"/>
     </inferredMetricsTieBreakers>
 </document>
