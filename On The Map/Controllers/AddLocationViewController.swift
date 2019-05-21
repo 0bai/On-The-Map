@@ -52,7 +52,7 @@ class AddLocationViewController: UIViewController {
             CLGeocoder().geocodeAddressString(address, completionHandler: { placemark, error in
                 if error != nil {
                     DispatchQueue.main.async {
-                        Alert.show(title: "Location Not Found", message: "Could Not Geocode the String!", sender: self)
+                        Alert.show(title: "Location Not Found", message: "Could Not Geocode the String!", sender: self, completion: {return})
                     }
                 }else{
                     if let location = placemark {
@@ -64,14 +64,14 @@ class AddLocationViewController: UIViewController {
             })
             
         }catch InputError.invalidURL{
-            Alert.show(title: "Invalid Website", message: "Please enter a valid website (must contain HTTP(s)://)", sender: self)
+            Alert.show(title: "Invalid Website", message: "Please enter a valid website (must contain HTTP(s)://)", sender: self, completion: {return})
             return
         }catch InputError.empty(let field){
-            Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self)
+            Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self, completion: {return})
             return
         }catch{
             let error = NSError()
-            Alert.show(title: "\(error.code)" , message: error.localizedDescription, sender: self)
+            Alert.show(title: "\(error.code)" , message: error.localizedDescription, sender: self, completion: {return})
             return
         }
         

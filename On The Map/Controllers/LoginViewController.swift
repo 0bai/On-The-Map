@@ -54,8 +54,9 @@ class LoginViewController: UIViewController, ConnectionDelegate{
             ConnectionManager.initilizeConnection(delegate: self, email: email, password: password)
             
         }catch InputError.empty(let field){
-            self.updateActivityIndicator(isHidden: true)
-            Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self)
+            Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self, completion: {
+                self.updateActivityIndicator(isHidden: true)
+            })
             return
         }catch{
             print("error")
@@ -75,8 +76,10 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     
     func serverError(error: String,details: String) {
         DispatchQueue.main.async {
-            self.updateActivityIndicator(isHidden: true)
-            Alert.show(title: error, message: details, sender: self)}
+            Alert.show(title: error, message: details, sender: self, completion: {
+                self.updateActivityIndicator(isHidden: true)
+                return
+            })}
     }
     
     func updateActivityIndicator(isHidden: Bool){

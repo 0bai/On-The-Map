@@ -57,14 +57,14 @@ class TableViewController: UITableViewController, ConnectionDelegate {
             return
         }
         DispatchQueue.main.async {
-            Alert.show(title: "Error", message: "Invalid Link", sender: self)
+            Alert.show(title: "Error", message: "Invalid Link", sender: self, completion: {return})
         }
         
     }
     
     func serverError(error: String, details: String) {
         DispatchQueue.main.async {
-            Alert.show(title: error, message: details, sender: self)
+            Alert.show(title: error, message: details, sender: self, completion: {return})
         }
     }
     

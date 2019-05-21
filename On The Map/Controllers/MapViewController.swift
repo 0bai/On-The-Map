@@ -53,7 +53,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     
     func serverError(error: String, details: String) {
         DispatchQueue.main.async {
-            Alert.show(title: error, message: details, sender: self)
+            Alert.show(title: error, message: details, sender: self, completion: {
+                self.indicatorView.isHidden = true
+                return
+            })
         }
     }
     
@@ -114,7 +117,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
                 return
             }
             DispatchQueue.main.async {
-                Alert.show(title: "Error", message: "Invalid Link", sender: self)
+                Alert.show(title: "Error", message: "Invalid Link", sender: self, completion: {return})
             }
             
         }
