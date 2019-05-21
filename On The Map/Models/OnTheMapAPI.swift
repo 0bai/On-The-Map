@@ -15,8 +15,10 @@ class OnTheMapAPI{
     static let version = "/v1"
     static let sessionPath = "\(version)/session"
     static let usersPath = "\(version)/users"
+    static let studentLocationsURL = "\(version)/StudentLocation"
     static var userPath = ""
     static var studentsLocation: LocationsList? = nil
+    static let queries = ["limit":"100", "order": "-updatedAt"]
     
     static func updateUserPath(id: String){
         userPath = "\(usersPath)/\(id)"

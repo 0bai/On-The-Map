@@ -12,30 +12,39 @@ extension ConnectionManager{
     
     static func getLocations(){
         
-        var parseURL = URLComponents()
-        parseURL.scheme = ParseAPI.scheme
-        parseURL.host = ParseAPI.host
-        parseURL.path = ParseAPI.path
-        parseURL.queryItems = []
-        ParseAPI.queries.forEach{ key , val in parseURL.queryItems?.append(URLQueryItem(name: key, value: val))}
-
+        var locationsURL = URLComponents()
+        locationsURL.scheme = OnTheMapAPI.scheme
+        locationsURL.host = OnTheMapAPI.host
+        locationsURL.path = OnTheMapAPI.studentLocationsURL
+        locationsURL.queryItems = []
+        OnTheMapAPI.queries.forEach{ key , val in locationsURL.queryItems?.append(URLQueryItem(name: key, value: val))}
+        
         let headers = [
             "X-Parse-Application-Id":"QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr",
             "X-Parse-REST-API-Key":"QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"]
         
-        fireRequest(url: parseURL, method: nil, headers: headers, body: nil, skip: false, responseHandler: {data,response,error in
+        fireRequest(url: locationsURL, method: nil, headers: headers, body: nil, skip: false, responseHandler: {data,response,error in
             
             OnTheMapAPI.studentsLocation = self.decode(data: data, type: LocationsList.self) as? LocationsList
             
-            if OnTheMapAPI.studentsLocation != nil {
-                
-                self.connectionDelegate?.listRetrieved?()
-                
-            }
+            self.connectionDelegate?.listRetrieved?()
         })
         
     }
     
+    
+    static func postLocation(location:StudentInformation){
+        var locationsURL = URLComponents()
+        locationsURL.scheme = OnTheMapAPI.scheme
+        locationsURL.host = OnTheMapAPI.host
+        locationsURL.path = OnTheMapAPI.studentLocationsURL
+        
+        fireRequest(url: locationsURL, method: "POST", headers: ["Content-Type" : "application/json"], body: encode(object: location), skip: false, responseHandler: {data, response, error in
+            udacian?.locationID = (self.decode(data: data, type: StudentInformation.self) as? StudentInformation)?.id ?? "nil"
+            self.connectionDelegate?.locationPosted?()
+        })
+        
+    }
     
     
 }
