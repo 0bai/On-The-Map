@@ -83,8 +83,6 @@ class ConnectionManager {
             case 200 ... 299 :
                 let newData = skip ? data?.subdata(in: 5..<data!.count) : data
                 responseHandler(newData!, response, error)
-            case 403:
-                self.connectionDelegate?.serverError(error: "Download Failed", details: "Please Refresh!")
             case 400 ... 499:
                 self.connectionDelegate?.serverError(error: "Authentication Error", details: "Invalid Username or Password!")
             default :
