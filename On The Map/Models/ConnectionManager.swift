@@ -13,6 +13,7 @@ import Foundation
     @objc optional func loginSucceeded()
     @objc optional func logoutSucceeded()
     @objc optional func listRetrieved()
+    @objc optional func locationPosted()
     @objc func serverError(error:String, details: String)
     
 }
@@ -32,7 +33,7 @@ class ConnectionManager {
     
     static func initilizeConnection(delegate:ConnectionDelegate, email:String, password:String){
         
-        udacian = Udacian(udacity: Udacity(email: email, password: password))
+        udacian = Udacian(udacity: Udacity(email: email, password: password),locationID: "nil")
         
         
         self.sessionURL.scheme = OnTheMapAPI.scheme
@@ -67,13 +68,11 @@ class ConnectionManager {
         headers?.forEach{(key, value) in
             request.addValue(value, forHTTPHeaderField: key)
         }
-        
         request.httpBody = body
         
         let session = URLSession.shared
         
         let task = session.dataTask(with: request) { data, response, error in
-            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                 self.connectionDelegate?.serverError(error: "Connection Error", details: "Please check your internet connection!")
                 return
