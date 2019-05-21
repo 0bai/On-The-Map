@@ -61,6 +61,7 @@ struct Udacity : Codable{
 
 struct Udacian:Codable {
     var udacity:Udacity
+    var locationID:String
 }
 
 
