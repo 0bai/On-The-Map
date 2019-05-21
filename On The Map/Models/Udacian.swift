@@ -39,6 +39,7 @@ struct User : Codable{
     }
     
 }
+
 struct Udacity : Codable{
     var email:String
     var password:String
@@ -56,9 +57,6 @@ struct Udacity : Codable{
         self.email = email
         self.password = password
     }
-    
-    
-    
 }
 
 struct Udacian:Codable {

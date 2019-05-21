@@ -78,13 +78,13 @@
 		2A27423D228BAD34002C1489 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A274240228BAD69002C1489 /* StudentInformation.swift */,
-				2A274245228BB8AE002C1489 /* Udacian.swift */,
 				2A274243228BB799002C1489 /* ConnectionManager.swift */,
 				2A274247228BBBC4002C1489 /* AuthenticationManager.swift */,
+				2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */,
 				2AC375CB228D01D100AB21C5 /* OnTheMapAPI.swift */,
 				2AAC15BA228E81330025A165 /* ParseAPI.swift */,
-				2AAC15BC228E85C50025A165 /* MapLocationsManager.swift */,
+				2A274240228BAD69002C1489 /* StudentInformation.swift */,
+				2A274245228BB8AE002C1489 /* Udacian.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

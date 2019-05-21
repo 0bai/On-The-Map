@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController, ConnectionDelegate{
             }
             
             ConnectionManager.initilizeConnection(delegate: self, email: email, password: password)
+            
         }catch AuthenticationError.empty(let field){
             self.updateActivityIndicator(isHidden: true)
             Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self)
@@ -74,10 +76,10 @@ class LoginViewController: UIViewController, ConnectionDelegate{
         }
     }
     
-    func serverError(error: String) {
+    func serverError(error: String,details: String) {
         DispatchQueue.main.async {
             self.updateActivityIndicator(isHidden: true)
-            Alert.show(title: "Wrong Credentials", message: "Invalid Email or Password", sender: self)}
+            Alert.show(title: error, message: details, sender: self)}
     }
     
     func updateActivityIndicator(isHidden: Bool){

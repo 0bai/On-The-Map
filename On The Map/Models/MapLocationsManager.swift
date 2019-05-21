@@ -26,8 +26,11 @@ extension ConnectionManager{
         fireRequest(url: parseURL, method: nil, headers: headers, body: nil, skip: false, responseHandler: {data,response,error in
             
             OnTheMapAPI.studentsLocation = self.decode(data: data, type: LocationsList.self) as? LocationsList
+            
             if OnTheMapAPI.studentsLocation != nil {
+                
                 self.connectionDelegate?.listRetrieved?()
+                
             }
         })
         

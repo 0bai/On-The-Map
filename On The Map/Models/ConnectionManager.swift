@@ -7,12 +7,13 @@
 //
 
 import Foundation
+
 @objc protocol ConnectionDelegate{
+    
     @objc optional func loginSucceeded()
     @objc optional func logoutSucceeded()
     @objc optional func listRetrieved()
-    @objc func serverError(error:String)
-    
+    @objc func serverError(error:String, details: String)
     
 }
 
@@ -59,44 +60,38 @@ class ConnectionManager {
     static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?, body:Data?, skip: Bool, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->()) {
         
         
-        print("\n \(url.url!) \n")
-        
-        
         var request = URLRequest(url: url.url!)
-        
         
         request.httpMethod = method ?? "GET"
         
-        
         headers?.forEach{(key, value) in
             request.addValue(value, forHTTPHeaderField: key)
-            }
-        
+        }
         
         request.httpBody = body
         
-        
         let session = URLSession.shared
-        
         
         let task = session.dataTask(with: request) { data, response, error in
             
-            if error != nil{
-                self.connectionDelegate?.serverError(error: "something went wrong!")
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                self.connectionDelegate?.serverError(error: "Connection Error", details: "Please check your internet connection!")
                 return
             }
             
-            
-            
-            let newData = skip ? data?.subdata(in: 5..<data!.count) : data
-            
-            print("\n \(String(data: newData!, encoding: .utf8)!) \n")
-            
-            responseHandler(newData!, response, error)
-            
-            
+            switch statusCode {
+            case 200 ... 299 :
+                let newData = skip ? data?.subdata(in: 5..<data!.count) : data
+                responseHandler(newData!, response, error)
+            case 403:
+                self.connectionDelegate?.serverError(error: "Download Failed", details: "Please Refresh!")
+            case 400 ... 499:
+                self.connectionDelegate?.serverError(error: "Authentication Error", details: "Invalid Username or Password!")
+            default :
+                self.connectionDelegate?.serverError(error: "Server Error", details: "Something went wrong!")
+                
+            }
         }
-        
         
         task.resume()
     }
@@ -109,7 +104,7 @@ class ConnectionManager {
             let json = try encoder.encode(object)
             return json
         } catch {
-            self.connectionDelegate?.serverError(error: "something went wrong while wrapping the data!")
+            self.connectionDelegate?.serverError(error: "Internal Error", details: "something went wrong while wrapping the data!")
             return "{\"error\": \"something went wrong while encoding\"}".data(using: .utf8)!
         }
     }
@@ -124,12 +119,11 @@ class ConnectionManager {
             return genericObject
         } catch  {
             print("error while decoding \(type)")
-            connectionDelegate?.serverError(error: "Error while unwrapping the data!")
+            connectionDelegate?.serverError(error: "Internal Error", details: "Error while unwrapping the data!")
             return Account(registered: false, id: "0")
         }
         
     }
-    
     
     
     static func isValidURL(link: String) -> Bool{
@@ -144,8 +138,9 @@ class ConnectionManager {
         
         return numberOfMatches?.range.length == link.utf16.count
         
-        }
+    }
 }
+
 
 
 

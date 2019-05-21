@@ -62,9 +62,9 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         
     }
     
-    func serverError(error: String) {
+    func serverError(error: String, details: String) {
         DispatchQueue.main.async {
-            Alert.show(title: "Download Failed", message: "Please Refresh The Table", sender: self)
+            Alert.show(title: error, message: details, sender: self)
         }
     }
     
