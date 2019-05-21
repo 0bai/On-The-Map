@@ -18,16 +18,16 @@ import Foundation
 
 class ConnectionManager {
     
+    
+    
     static var udacian:Udacian? = nil
     static var connectionDelegate:ConnectionDelegate? = nil
     static var sessionURL = URLComponents()
     static var userURL = URLComponents()
     
     
-    private init() {
-        
-
-    }
+    
+    
     
     static func initilizeConnection(delegate:ConnectionDelegate, email:String, password:String){
         
@@ -45,45 +45,59 @@ class ConnectionManager {
         
     }
     
+    
+    
+    
     static func updateDelegate(delegate:ConnectionDelegate){
         self.connectionDelegate = delegate
     }
     
     
     
-    static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?,body:Data?, skip: Bool, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->(), cookie: @escaping ()->HTTPCookie?){
+    
+    
+    static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?, body:Data?, skip: Bool, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->()) {
+        
         
         print("\n \(url.url!) \n")
         
+        
         var request = URLRequest(url: url.url!)
         
+        
         request.httpMethod = method ?? "GET"
+        
         
         headers?.forEach{(key, value) in
             request.addValue(value, forHTTPHeaderField: key)
             }
         
         
-        request.httpBody = body 
+        request.httpBody = body
         
-        let coockieToDelete = cookie()
-        
-        if let xsrfCookie = coockieToDelete {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
         
         let session = URLSession.shared
         
+        
         let task = session.dataTask(with: request) { data, response, error in
+            
             if error != nil{
                 self.connectionDelegate?.serverError(error: "something went wrong!")
                 return
             }
             
+            
+            
             let newData = skip ? data?.subdata(in: 5..<data!.count) : data
+            
             print("\n \(String(data: newData!, encoding: .utf8)!) \n")
+            
             responseHandler(newData!, response, error)
+            
+            
         }
+        
+        
         task.resume()
     }
     
@@ -101,6 +115,8 @@ class ConnectionManager {
     }
     
     
+    
+    
     static func decode<T: Codable>(data:Data, type:T.Type) -> Codable{
         do {
             let decoder = JSONDecoder()
@@ -113,6 +129,8 @@ class ConnectionManager {
         }
         
     }
+    
+    
     
     static func isValidURL(link: String) -> Bool{
         

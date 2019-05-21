@@ -29,7 +29,7 @@ extension ConnectionManager{
             if OnTheMapAPI.studentsLocation != nil {
                 self.connectionDelegate?.listRetrieved?()
             }
-        }, cookie: {return nil})
+        })
         
     }
     

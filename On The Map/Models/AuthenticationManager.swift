@@ -28,7 +28,7 @@ extension ConnectionManager{
             }else{
                 self.connectionDelegate?.serverError(error: "Wrong Username or Password")
             }
-        }, cookie: { return nil })
+        })
     }
     
     static func getUserData(){
@@ -37,33 +37,28 @@ extension ConnectionManager{
             if self.udacian?.udacity.user?.firstName != nil {
                 self.connectionDelegate?.loginSucceeded!()
             }
-        }, cookie: { return nil })
+        })
     }
     
     static func logout(){
         
-        fireRequest(url: sessionURL, method: "DELETE", headers: nil, body: nil, skip: true, responseHandler: {_,_,_ in
+        var headers = [String : String]()
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { headers["X-XSRF-TOKEN"] = "\(cookie)"}
+        }
+        
+        
+        fireRequest(url: sessionURL, method: "DELETE", headers: headers, body: nil, skip: true, responseHandler: {_,_,_ in
             OnTheMapAPI.clearData()
             self.udacian = nil
             self.connectionDelegate?.logoutSucceeded!()
             self.connectionDelegate = nil
-        },
-                    cookie: {
-                        
-                        var xsrfCookie: HTTPCookie? = nil
-                        let sharedCookieStorage = HTTPCookieStorage.shared
-                        for cookie in sharedCookieStorage.cookies! {
-                            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-                        }
-                        
-                        return xsrfCookie
-                        
-        }
-        )
-        
+        })
     }
     
 }
+
 
 
 
