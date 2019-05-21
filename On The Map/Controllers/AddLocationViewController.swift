@@ -89,6 +89,7 @@ class AddLocationViewController: UIViewController {
             if let placemark = (sender as! [CLPlacemark]).first {
                 vc.location = placemark
                 vc.website = website!
+                vc.pinName = addressTextField.text!
             }
         }
     }

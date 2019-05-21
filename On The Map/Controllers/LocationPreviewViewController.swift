@@ -17,6 +17,7 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate {
     
     var location : CLPlacemark? = nil
     var website : String = ""
+    var pinName : String = ""
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +40,7 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate {
     @IBAction func finish(_ sender: Any) {
         let user = ConnectionManager.udacian?.udacity
         
-        ConnectionManager.postLocation(location: StudentInformation(id: "", key: user?.credentials?.account?.id, firstName: user?.user?.firstName, lastName: user?.user?.lastName, geocode: location?.name, website: website, latitude: Float((location?.location?.coordinate.latitude)!), longitude: Float((location?.location?.coordinate.longitude)!)))
+        ConnectionManager.postLocation(location: StudentInformation(id: "", key: user?.credentials?.account?.id, firstName: user?.user?.firstName, lastName: user?.user?.lastName, geocode: pinName, website: website, latitude: Float((location?.location?.coordinate.latitude)!), longitude: Float((location?.location?.coordinate.longitude)!)))
     }
     
     func locationPosted() {
