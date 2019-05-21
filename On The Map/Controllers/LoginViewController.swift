@@ -8,9 +8,6 @@
 
 import UIKit
 
-enum AuthenticationError: Error{
-    case empty(field:String)
-}
 
 class LoginViewController: UIViewController, ConnectionDelegate{
     
@@ -47,16 +44,16 @@ class LoginViewController: UIViewController, ConnectionDelegate{
         
         do{
             guard let email =  emailTextField.text, !email.isEmpty else {
-                throw AuthenticationError.empty(field: "Email")
+                throw InputError.empty(field: "Email")
             }
             
             guard let password =  passwordTextField.text, !password.isEmpty else {
-                throw AuthenticationError.empty(field: "Password")
+                throw InputError.empty(field: "Password")
             }
             
             ConnectionManager.initilizeConnection(delegate: self, email: email, password: password)
             
-        }catch AuthenticationError.empty(let field){
+        }catch InputError.empty(let field){
             self.updateActivityIndicator(isHidden: true)
             Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self)
             return

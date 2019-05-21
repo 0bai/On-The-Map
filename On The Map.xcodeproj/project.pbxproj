@@ -17,6 +17,7 @@
 		2A274244228BB799002C1489 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A274243228BB799002C1489 /* ConnectionManager.swift */; };
 		2A274246228BB8AE002C1489 /* Udacian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A274245228BB8AE002C1489 /* Udacian.swift */; };
 		2A274248228BBBC4002C1489 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A274247228BBBC4002C1489 /* AuthenticationManager.swift */; };
+		2A8F21C92293BCFB00FDCDD3 /* InputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8F21C82293BCFB00FDCDD3 /* InputError.swift */; };
 		2A9AB0D0228A8FC900F44D72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AB0CF228A8FC900F44D72 /* AppDelegate.swift */; };
 		2A9AB0D5228A8FC900F44D72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D3228A8FC900F44D72 /* Main.storyboard */; };
 		2A9AB0D8228A8FC900F44D72 /* On_The_Map.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AB0D6228A8FC900F44D72 /* On_The_Map.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 		2A274243228BB799002C1489 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		2A274245228BB8AE002C1489 /* Udacian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Udacian.swift; sourceTree = "<group>"; };
 		2A274247228BBBC4002C1489 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		2A8F21C82293BCFB00FDCDD3 /* InputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputError.swift; sourceTree = "<group>"; };
 		2A9AB0CC228A8FC900F44D72 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AB0CF228A8FC900F44D72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9AB0D4228A8FC900F44D72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				2AAC15BA228E81330025A165 /* ParseAPI.swift */,
 				2A274240228BAD69002C1489 /* StudentInformation.swift */,
 				2A274245228BB8AE002C1489 /* Udacian.swift */,
+				2A8F21C82293BCFB00FDCDD3 /* InputError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8F21C92293BCFB00FDCDD3 /* InputError.swift in Sources */,
 				2A274234228BAAB3002C1489 /* LoginViewController.swift in Sources */,
 				2A27423F228BAD5A002C1489 /* TableViewCell.swift in Sources */,
 				2AAC15BB228E81330025A165 /* ParseAPI.swift in Sources */,

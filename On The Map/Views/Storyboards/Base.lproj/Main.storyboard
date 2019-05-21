@@ -186,7 +186,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="fEs-yV-uJ9">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="show" id="mlr-At-BJe"/>
+                                    <segue destination="nAK-qd-qce" kind="presentation" id="Zf8-bx-btB"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD">
@@ -251,7 +251,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="V4k-YR-jwB">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="show" id="Wod-17-bfT"/>
+                                    <segue destination="nAK-qd-qce" kind="presentation" id="I6J-qU-yDX"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j">
@@ -314,6 +314,9 @@
                                                 <state key="normal" title="FIND LOCATION">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="find:" destination="aQN-Wt-YoI" eventType="touchUpInside" id="2IE-hu-7SM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -330,12 +333,15 @@
                         <viewLayoutGuide key="safeArea" id="2Nf-oU-xLg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="3KA-8m-N0f">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8tI-aT-6NG"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8tI-aT-6NG">
+                            <connections>
+                                <action selector="cancel:" destination="aQN-Wt-YoI" id="KPt-FR-1cG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressTextField" destination="Vue-dL-G6d" id="Z4I-fI-Me0"/>
-                        <outlet property="findButton" destination="F32-TU-ZC0" id="atF-cN-5Fn"/>
                         <outlet property="websiteTextField" destination="0M8-IU-tGe" id="4wc-kw-bR8"/>
                         <segue destination="zTN-Ns-dpd" kind="show" identifier="showLocation" id="w1A-49-RN6"/>
                     </connections>
@@ -472,6 +478,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wod-17-bfT"/>
+        <segue reference="Zf8-bx-btB"/>
     </inferredMetricsTieBreakers>
 </document>
