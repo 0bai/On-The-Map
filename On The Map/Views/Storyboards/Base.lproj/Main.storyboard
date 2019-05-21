@@ -370,6 +370,9 @@
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="finish:" destination="zTN-Ns-dpd" eventType="touchUpInside" id="IuA-Qi-6G5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -385,7 +388,7 @@
                         <viewLayoutGuide key="safeArea" id="2vw-4v-WO3"/>
                     </view>
                     <connections>
-                        <outlet property="finishButton" destination="9RW-bG-xR9" id="gpT-Tr-TfN"/>
+                        <outlet property="map" destination="bEH-SQ-mtV" id="CGW-0e-Hsx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86W-iB-zPm" userLabel="First Responder" sceneMemberID="firstResponder"/>

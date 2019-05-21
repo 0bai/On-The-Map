@@ -126,7 +126,7 @@ class ConnectionManager {
     
     static func isValidURL(link: String) -> Bool{
         
-        guard link.contains("https://") || link.contains("http://") else {
+        guard link.lowercased().contains("https://") || link.lowercased().contains("http://") else {
             return false
         }
         
