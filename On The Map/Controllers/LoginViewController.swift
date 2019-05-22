@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     @IBAction func login(_ sender: Any) {
         
         do{
+            
             guard let email =  emailTextField.text, !email.isEmpty else {
                 throw InputError.empty(field: "Email")
             }
@@ -54,10 +55,13 @@ class LoginViewController: UIViewController, ConnectionDelegate{
             ConnectionManager.initilizeConnection(delegate: self, email: email, password: password)
             
         }catch InputError.empty(let field){
+            
             Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self, completion: {
                 self.updateActivityIndicator(isHidden: true)
             })
+            
             return
+            
         }catch{
             print("error")
             return
@@ -66,7 +70,9 @@ class LoginViewController: UIViewController, ConnectionDelegate{
         updateActivityIndicator(isHidden: false)
         
         ConnectionManager.login()
+        
     }
+    
     
     func loginSucceeded() {
         DispatchQueue.main.async {
@@ -76,8 +82,10 @@ class LoginViewController: UIViewController, ConnectionDelegate{
     
     func serverError(error: String,details: String) {
         DispatchQueue.main.async {
+            
             Alert.show(title: error, message: details, sender: self, completion: {
                 self.updateActivityIndicator(isHidden: true)
+                
                 return
             })}
     }

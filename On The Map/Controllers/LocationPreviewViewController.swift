@@ -26,9 +26,11 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate, MKMap
         
         let annotation = MKPointAnnotation()
         let user = ConnectionManager.udacian?.udacity.user
+        
         annotation.coordinate = (location?.location!.coordinate)!
         annotation.title = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
         annotation.subtitle = website
+        
         map.addAnnotation(annotation)
     }
     

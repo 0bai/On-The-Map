@@ -34,14 +34,17 @@ extension ConnectionManager{
     
     
     static func postLocation(location:StudentInformation){
+        
         var locationsURL = URLComponents()
         locationsURL.scheme = OnTheMapAPI.scheme
         locationsURL.host = OnTheMapAPI.host
         locationsURL.path = OnTheMapAPI.studentLocationsURL
         
         fireRequest(url: locationsURL, method: "POST", headers: ["Content-Type" : "application/json"], body: encode(object: location), skip: false, responseHandler: {data, response, error in
+            
             udacian?.locationID = (self.decode(data: data, type: StudentInformation.self) as? StudentInformation)?.id ?? "nil"
             self.connectionDelegate?.locationPosted?()
+            
         })
         
     }

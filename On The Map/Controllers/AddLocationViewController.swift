@@ -50,29 +50,41 @@ class AddLocationViewController: UIViewController {
             }
             
             CLGeocoder().geocodeAddressString(address, completionHandler: { placemark, error in
+                
                 if error != nil {
+                    
                     DispatchQueue.main.async {
                         Alert.show(title: "Location Not Found", message: "Could Not Geocode the String!", sender: self, completion: {return})
                     }
+                    
                 }else{
+                    
                     if let location = placemark {
+                        
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: self.segueIdentifier, sender: location)
                         }
+                        
                     }
                 }
             })
             
         }catch InputError.invalidURL{
+            
             Alert.show(title: "Invalid Website", message: "Please enter a valid website (must contain HTTP(s)://)", sender: self, completion: {return})
             return
+            
         }catch InputError.empty(let field){
+            
             Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self, completion: {return})
             return
+            
         }catch{
+            
             let error = NSError()
             Alert.show(title: "\(error.code)" , message: error.localizedDescription, sender: self, completion: {return})
             return
+            
         }
         
         
@@ -83,13 +95,19 @@ class AddLocationViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == self.segueIdentifier{
+            
             let vc = segue.destination as! LocationPreviewViewController
+            
             if let placemark = (sender as! [CLPlacemark]).first {
+                
                 vc.location = placemark
                 vc.website = website!
                 vc.pinName = addressTextField.text!
+                
             }
         }
     }

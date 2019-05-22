@@ -58,13 +58,18 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
         guard let link = cell.websiteLabel.text else{ return }
+        
         if ConnectionManager.isValidURL(link: link){
+            
             let websiteURL = URL(string: link)!
             UIApplication.shared.open(websiteURL)
             return
+            
         }
+        
         DispatchQueue.main.async {
             Alert.show(title: "Error", message: "Invalid Link", sender: self, completion: {return})
         }
@@ -78,10 +83,11 @@ class TableViewController: UITableViewController, ConnectionDelegate {
     }
     
     func logoutSucceeded() {
-        print("logout succeeded")
         DispatchQueue.main.async {
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
             self.present( vc, animated: true, completion: nil)
+            
         }
     }
     

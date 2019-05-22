@@ -117,13 +117,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
         if control == view.rightCalloutAccessoryView {
+            
             guard let link = view.annotation?.subtitle else{ return }
+            
             if ConnectionManager.isValidURL(link: link!){
+                
                 let websiteURL = URL(string: link!)!
                 UIApplication.shared.open(websiteURL)
                 return
+                
             }
+            
             DispatchQueue.main.async {
                 Alert.show(title: "Error", message: "Invalid Link", sender: self, completion: {return})
             }
