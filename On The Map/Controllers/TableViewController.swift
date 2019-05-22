@@ -27,6 +27,7 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         updateTable()
         retrieveData()
     }
+    
     @IBAction func logout(_ sender: Any) {
         ConnectionManager.logout()
     }
@@ -39,8 +40,46 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         self.performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     
-    // MARK: - Table view data source
+    func retrieveData(){
+        ConnectionManager.getLocations()
+    }
     
+    func updateTable(){
+        DispatchQueue.main.async {
+            
+            self.tableView.beginUpdates()
+            self.tableView.reloadData()
+            self.tableView.endUpdates()
+            
+        }
+    }
+}
+
+extension TableViewController{
+    // MARK: - Connection Delegate
+    
+    func serverError(error: String, details: String) {
+        DispatchQueue.main.async {
+            Alert.show(title: error, message: details, sender: self, completion: {return})
+        }
+    }
+    
+    func logoutSucceeded() {
+        DispatchQueue.main.async {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+            self.present( vc, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func listRetrieved() {
+        self.updateTable()
+    }
+}
+
+extension TableViewController{
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return OnTheMapAPI.studentsLocation?.results.count ?? 56
@@ -74,38 +113,5 @@ class TableViewController: UITableViewController, ConnectionDelegate {
             Alert.show(title: "Error", message: "Invalid Link", sender: self, completion: {return})
         }
         
-    }
-    
-    func serverError(error: String, details: String) {
-        DispatchQueue.main.async {
-            Alert.show(title: error, message: details, sender: self, completion: {return})
-        }
-    }
-    
-    func logoutSucceeded() {
-        DispatchQueue.main.async {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
-            self.present( vc, animated: true, completion: nil)
-            
-        }
-    }
-    
-    func listRetrieved() {
-        self.updateTable()
-    }
-    
-    func retrieveData(){
-        ConnectionManager.getLocations()
-    }
-    
-    func updateTable(){
-        DispatchQueue.main.async {
-            
-            self.tableView.beginUpdates()
-            self.tableView.reloadData()
-            self.tableView.endUpdates()
-            
-        }
     }
 }

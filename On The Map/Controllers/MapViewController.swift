@@ -15,7 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     @IBOutlet weak var indicatorView: UIView!
     
     let segueIdentifier = "addLocation"
-     var annotations = [MKPointAnnotation]()
+    var annotations = [MKPointAnnotation]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
@@ -44,6 +44,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
         self.performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     
+    func updateMap(){
+        let locations = OnTheMapAPI.studentsLocation?.results
+        
+        annotations = [MKPointAnnotation]()
+        
+        locations?.forEach{ location in
+            
+            guard let userLat = location.latitude else {return}
+            guard let userLong = location.longitude else {return}
+            let lat = CLLocationDegrees(userLat)
+            let long = CLLocationDegrees(userLong)
+            
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(location.firstName ?? "") \(location.lastName ?? "")"
+            annotation.subtitle = location.website
+            annotations.append(annotation)
+        }
+        
+        self.mapView.addAnnotations(annotations)
+    }
+}
+
+extension MapViewController{
+    //MARK: - Connection Delegate
     func logoutSucceeded() {
         print("logout succeeded")
         DispatchQueue.main.async {
@@ -72,30 +99,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
         ConnectionManager.getLocations()
     }
     
-    func updateMap(){
-        let locations = OnTheMapAPI.studentsLocation?.results
-        
-        annotations = [MKPointAnnotation]()
-        
-        locations?.forEach{ location in
-            
-            guard let userLat = location.latitude else {return}
-            guard let userLong = location.longitude else {return}
-            let lat = CLLocationDegrees(userLat)
-            let long = CLLocationDegrees(userLong)
-            
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(location.firstName ?? "") \(location.lastName ?? "")"
-            annotation.subtitle = location.website
-            annotations.append(annotation)
-        }
-        
-        self.mapView.addAnnotations(annotations)
-    }
-    
+}
+
+extension MapViewController{
     // MARK: - MKMapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -136,5 +142,4 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
             
         }
     }
-
 }

@@ -332,7 +332,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="110"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-TB-B3f" userLabel="Input Fields">
-                                                        <rect key="frame" x="100" y="0.0" width="214" height="106"/>
+                                                        <rect key="frame" x="100" y="0.0" width="214" height="134"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vue-dL-G6d" userLabel="Address">
                                                                 <rect key="frame" x="0.0" y="0.0" width="214" height="30"/>
@@ -356,6 +356,9 @@
                                                                     <action selector="find:" destination="aQN-Wt-YoI" eventType="touchUpInside" id="2IE-hu-7SM"/>
                                                                 </connections>
                                                             </button>
+                                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xXa-Ar-Qzu">
+                                                                <rect key="frame" x="0.0" y="114" width="214" height="20"/>
+                                                            </activityIndicatorView>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="T4X-oJ-EZ4" userLabel="Padding Stack">
@@ -386,6 +389,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="xXa-Ar-Qzu" id="rJw-p0-GqI"/>
                         <outlet property="addressTextField" destination="Vue-dL-G6d" id="Z4I-fI-Me0"/>
                         <outlet property="findButton" destination="F32-TU-ZC0" id="CaP-SL-NKV"/>
                         <outlet property="websiteTextField" destination="0M8-IU-tGe" id="4wc-kw-bR8"/>
@@ -531,7 +535,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mNp-Bo-FUC"/>
         <segue reference="aTg-hy-2p4"/>
     </inferredMetricsTieBreakers>
 </document>

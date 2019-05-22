@@ -14,6 +14,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var findButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let segueIdentifier = "showLocation"
     var website : String? = nil
@@ -29,6 +30,10 @@ class AddLocationViewController: UIViewController {
     func updateCorners(obj: UIView){
         obj.layer.cornerRadius = 5
         obj.clipsToBounds = true
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func find(_ sender: Any) {
@@ -49,37 +54,38 @@ class AddLocationViewController: UIViewController {
                 throw InputError.invalidURL(field: "Website")
             }
             
+            activityIndicator.isHidden = false
+            
             CLGeocoder().geocodeAddressString(address, completionHandler: { placemark, error in
                 
+                DispatchQueue.main.async {
+                    self.activityIndicator.isHidden = true
+                }
+                
                 if error != nil {
-                    
                     DispatchQueue.main.async {
                         Alert.show(title: "Location Not Found", message: "Could Not Geocode the String!", sender: self, completion: {return})
                     }
-                    
                 }else{
-                    
                     if let location = placemark {
-                        
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: self.segueIdentifier, sender: location)
                         }
-                        
                     }
                 }
             })
             
-        }catch InputError.invalidURL{
+        } catch InputError.invalidURL {
             
             Alert.show(title: "Invalid Website", message: "Please enter a valid website (must contain HTTP(s)://)", sender: self, completion: {return})
             return
             
-        }catch InputError.empty(let field){
+        } catch InputError.empty(let field) {
             
             Alert.show(title: "Empty \(field)", message: "Please Enter Your \(field)", sender: self, completion: {return})
             return
             
-        }catch{
+        } catch {
             
             let error = NSError()
             Alert.show(title: "\(error.code)" , message: error.localizedDescription, sender: self, completion: {return})
@@ -87,12 +93,6 @@ class AddLocationViewController: UIViewController {
             
         }
         
-        
-    }
-    
-    
-    @IBAction func cancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     

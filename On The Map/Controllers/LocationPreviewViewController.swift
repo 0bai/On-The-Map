@@ -19,8 +19,8 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate, MKMap
     var website : String = ""
     var pinName : String = ""
     
-    
     override func viewWillAppear(_ animated: Bool) {
+        
         ConnectionManager.connectionDelegate = self
         updateCorners(obj: finishButton)
         
@@ -50,15 +50,22 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate, MKMap
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
+}
+
+extension LocationPreviewViewController{
+    // MARK: - Connection Delegate
     
     func serverError(error: String, details: String) {
         DispatchQueue.main.async {
             Alert.show(title: "Server Error", message: "Could Not Post Location, Please Try Again", sender: self, completion: {
-                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             })
         }
     }
+}
+
+extension LocationPreviewViewController{
+    //MARK: - MKMapViewDelegate
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         let region = MKCoordinateRegion(center: (location?.location!.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))

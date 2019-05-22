@@ -26,15 +26,10 @@ class ConnectionManager {
     static var connectionDelegate:ConnectionDelegate? = nil
     static var sessionURL = URLComponents()
     static var userURL = URLComponents()
-    
-    
-    
-    
-    
+
     static func initilizeConnection(delegate:ConnectionDelegate, email:String, password:String){
         
         udacian = Udacian(udacity: Udacity(email: email, password: password),locationID: "nil")
-        
         
         self.sessionURL.scheme = OnTheMapAPI.scheme
         self.sessionURL.host = OnTheMapAPI.host
@@ -44,22 +39,13 @@ class ConnectionManager {
         self.userURL.host = OnTheMapAPI.host
         
         self.updateDelegate(delegate: delegate)
-        
     }
-    
-    
-    
-    
+
     static func updateDelegate(delegate:ConnectionDelegate){
         self.connectionDelegate = delegate
     }
-    
-    
-    
-    
-    
+
     static func fireRequest(url:URLComponents, method:String?, headers:[String:String]?, body:Data?, skip: Bool, responseHandler:@escaping (_ data:Data, _ response:URLResponse?, _ error:Error?)->()) {
-        
         
         var request = URLRequest(url: url.url!)
         
@@ -68,6 +54,7 @@ class ConnectionManager {
         headers?.forEach{(key, value) in
             request.addValue(value, forHTTPHeaderField: key)
         }
+            
         request.httpBody = body
         
         let session = URLSession.shared
@@ -92,8 +79,7 @@ class ConnectionManager {
         
         task.resume()
     }
-    
-    
+
     static func encode<T:Codable>(object:T) -> Data{
         
         let encoder = JSONEncoder()
@@ -105,10 +91,7 @@ class ConnectionManager {
             return "{\"error\": \"something went wrong while encoding\"}".data(using: .utf8)!
         }
     }
-    
-    
-    
-    
+
     static func decode<T: Codable>(data:Data, type:T.Type) -> Codable{
         do {
             let decoder = JSONDecoder()
@@ -121,8 +104,7 @@ class ConnectionManager {
         }
         
     }
-    
-    
+
     static func isValidURL(link: String) -> Bool{
         
         guard link.lowercased().contains("https://") || link.lowercased().contains("http://") else {
