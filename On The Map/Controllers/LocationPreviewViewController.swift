@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationPreviewViewController: UIViewController, ConnectionDelegate {
+class LocationPreviewViewController: UIViewController, ConnectionDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var finishButton: UIButton!
@@ -56,6 +56,11 @@ class LocationPreviewViewController: UIViewController, ConnectionDelegate {
                     self.presentingViewController?.dismiss(animated: true, completion: nil)
             })
         }
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        let region = MKCoordinateRegion(center: (location?.location!.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        self.map.setRegion(region, animated: true)
     }
     
 }
