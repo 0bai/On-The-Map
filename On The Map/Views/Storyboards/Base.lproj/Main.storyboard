@@ -186,7 +186,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="fEs-yV-uJ9">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="Zf8-bx-btB"/>
+                                    <action selector="addLocation:" destination="7ca-Oc-a6B" id="PWF-Vy-S07"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="3f7-0U-ylD">
@@ -196,6 +196,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="81m-k5-a3r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evr-51-DUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,7 +254,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Add" image="icon_addpin" id="V4k-YR-jwB">
                                 <connections>
-                                    <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="I6J-qU-yDX"/>
+                                    <action selector="addLocation:" destination="yRc-f1-o3x" id="OwV-3e-yJt"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Refresh" image="icon_refresh" id="NkT-OR-k9j">
@@ -264,6 +267,7 @@
                     <connections>
                         <outlet property="indicatorView" destination="EaY-hZ-2LH" id="qhV-LY-6YX"/>
                         <outlet property="mapView" destination="Xlb-pV-Qqq" id="qhK-NU-2SF"/>
+                        <segue destination="nAK-qd-qce" kind="presentation" identifier="addLocation" id="aTg-hy-2p4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8b-fD-vb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -483,6 +487,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Zf8-bx-btB"/>
+        <segue reference="aTg-hy-2p4"/>
     </inferredMetricsTieBreakers>
 </document>

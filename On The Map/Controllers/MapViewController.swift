@@ -14,6 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var indicatorView: UIView!
     
+    let segueIdentifier = "addLocation"
      var annotations = [MKPointAnnotation]()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +36,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
         ConnectionManager.logout()
     }
     
+    @IBAction func addLocation(_ sender: Any) {
+        if ConnectionManager.udacian?.locationID != "nil"{
+            Alert.overwriteDialog(sender: self)
+            return
+        }
+        self.performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
     
     func logoutSucceeded() {
         print("logout succeeded")
@@ -122,4 +130,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, ConnectionDelegate
             
         }
     }
+
 }

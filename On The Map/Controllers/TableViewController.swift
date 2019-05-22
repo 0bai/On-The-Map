@@ -11,6 +11,7 @@ import UIKit
 class TableViewController: UITableViewController, ConnectionDelegate {
     
     let cellIdentifier = "addressCell"
+    let segueIdentifier = "addLocation"
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -30,6 +31,13 @@ class TableViewController: UITableViewController, ConnectionDelegate {
         ConnectionManager.logout()
     }
     
+    @IBAction func addLocation(_ sender: Any) {
+        if ConnectionManager.udacian?.locationID != "nil"{
+            Alert.overwriteDialog(sender: self)
+            return
+        }
+        self.performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
     
     // MARK: - Table view data source
     

@@ -22,9 +22,17 @@ class Alert{
     
     public static func overwriteDialog(sender: UIViewController){
         let user = ConnectionManager.udacian?.udacity.user
+        
         let alert = UIAlertController(title: "Warning", message:  "User \"\(user?.firstName ?? "") \(user?.lastName ?? "")\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: nil))
+
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: {action in
+            DispatchQueue.main.async {
+                sender.performSegue(withIdentifier: "addLocation", sender: sender)
+            }
+        }))
+        
         sender.present(alert, animated: true, completion: nil)
     }
 }
